@@ -13,9 +13,9 @@ class CSVReader {
     CSVReader(const CSVReader&) = delete;
     CSVReader& operator=(const CSVReader&) = delete;
 
-    std::unique_ptr<std::vector<std::vector<std::string>>> GetData();
+    std::vector<std::vector<std::string>> GetData();
 
   private:
-    std::string _file_name;
+    std::string _filename;
     std::string _delimiter;
 };

@@ -5,6 +5,10 @@
 CSVReader::CSVReader(std::string filename, std::string delimiter)
         : _filename(filename), _delimiter(delimiter) {}
 
-std::unique_ptr<std::vector<std::vector<std::string>>> CSVReader::GetData() {
-    return std::move(std::make_unique<std::vector<std::vector<std::string>>>());
+std::vector<std::vector<std::string>> CSVReader::GetData() {
+    return std::vector<std::vector<std::string>>();
+}
+
+int main(int argc, char** argv) {
+    return 0;
 }

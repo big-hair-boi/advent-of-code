@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.19.1)
 
 SET (CMAKE_C_COMPILER_WORKS 1)
 SET (CMAKE_CXX_COMPILER_WORKS 1)
-#set(CMAKE_CXX_COMPILER "g++")
 
 # set the project name and version
 project(advent-of-code VERSION 1.0)

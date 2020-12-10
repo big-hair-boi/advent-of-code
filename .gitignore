@@ -33,3 +33,6 @@
 
 # Secret files
 *secret*
+
+# Cmake Files
+build/*

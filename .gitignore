@@ -35,4 +35,6 @@
 *secret*
 
 # Cmake Files
+CMakeFiles/*
 build/*
+*CMakeCache.txt

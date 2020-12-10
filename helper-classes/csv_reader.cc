@@ -8,7 +8,3 @@ CSVReader::CSVReader(std::string filename, std::string delimiter)
 std::vector<std::vector<std::string>> CSVReader::GetData() {
     return std::vector<std::vector<std::string>>();
 }
-
-int main(int argc, char** argv) {
-    return 0;
-}

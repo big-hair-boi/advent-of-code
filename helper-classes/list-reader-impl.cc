@@ -3,9 +3,11 @@
 #include <fstream>
 #include <iostream>
 
-#include "data-reader.h"
+#include "list-reader.h"
 
-std::vector<std::string> DataReaderImpl::GetData() {
+namespace data {
+
+std::vector<std::string> ListReaderImpl::GetData() {
     std::vector<std::string> data_list;
 
     std::ifstream file(this->_filename);
@@ -16,3 +18,5 @@ std::vector<std::string> DataReaderImpl::GetData() {
 
     return data_list;
 }
+
+} // namespace data

@@ -5,15 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Windows) Launch",
-            "type": "cppvsdbg",
+            "name": "Day 01 Main",
+            "type": "cppdbg",
+            "additionalSOLibSearchPath": "${workspaceFolder}/build;https://symweb",
             "request": "launch",
-            "program": "build/day-01-main.exe",
+            "program": "${workspaceFolder}/build/day-01-main.exe",
             "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/build",
             "environment": [],
-            "externalConsole": false
+            "externalConsole": false,
+            "windows": {
+                "MIMode": "lldb",
+                "miDebuggerPath": "C:/Program Files/LLVM/bin/lldb.exe"
+            }
         }
     ]
 }

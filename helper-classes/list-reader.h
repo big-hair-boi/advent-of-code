@@ -20,6 +20,9 @@ class ListReader {
 };
 
 class ListReaderImpl : ListReader<std::string> {
+  public:
+    ListReaderImpl(std::string filename) : ListReader(filename) {}
+
     // Default implementation returns a list of strings
     std::vector<std::string> GetData() override;
 };

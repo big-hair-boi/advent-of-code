@@ -4,6 +4,7 @@ SET (CMAKE_C_COMPILER_WORKS 1)
 SET (CMAKE_CXX_COMPILER_WORKS 1)
 
 set(CMAKE_AR "llvm-ar" CACHE FILEPATH "" FORCE)
+set(CMAKE_LINKER "lld-link" CACHE FILEPATH "" FORCE)
 
 # set(CMAKE_C_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
 # set(CMAKE_CXX_COMPILER "C:/Program Files/LLVM/bin/clang.exe")

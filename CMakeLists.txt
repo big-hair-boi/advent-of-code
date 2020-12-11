@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 3.19.1)
 
-#set(CMAKE_C_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
-#set(CMAKE_CXX_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
+SET (CMAKE_C_COMPILER_WORKS 1)
+SET (CMAKE_CXX_COMPILER_WORKS 1)
+
+set(CMAKE_AR "llvm-ar" CACHE FILEPATH "" FORCE)
+
+# set(CMAKE_C_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
+# set(CMAKE_CXX_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
+set(CMAKE_C_COMPILER "clang")
+set(CMAKE_CXX_COMPILER "clang++")
 
 # set the project name and version
 project(advent-of-code VERSION 1.0)

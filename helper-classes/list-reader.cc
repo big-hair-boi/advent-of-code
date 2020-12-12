@@ -7,7 +7,8 @@
 
 namespace data {
 
-std::vector<std::string> ListReaderImpl::GetData() {
+template <typename data_type>
+std::vector<std::string> ListReader<data_type>::GetStringListData() {
     std::vector<std::string> data_list;
 
     std::ifstream file(this->_filename);

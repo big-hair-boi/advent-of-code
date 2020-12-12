@@ -17,6 +17,7 @@ class ListReader {
 
   protected:
     std::string _filename;
+    std::vector<std::string> GetStringListData();
 };
 
 class ListReaderImpl : ListReader<std::string> {
@@ -24,7 +25,9 @@ class ListReaderImpl : ListReader<std::string> {
     ListReaderImpl(std::string filename) : ListReader(filename) {}
 
     // Default implementation returns a list of strings
-    std::vector<std::string> GetData() override;
+    std::vector<std::string> GetData() override {
+      return this->GetStringListData();
+    };
 };
 
 } // namespace data

@@ -7,4 +7,4 @@ project(advent-of-code)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library(helper-classes STATIC csv_reader.cc)
+add_library(list-reader STATIC list-reader-impl.cc)

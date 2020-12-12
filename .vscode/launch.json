@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Day 01 Main",
+            "type": "cppdbg",
+            "additionalSOLibSearchPath": "${workspaceFolder}/build;https://symweb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/day-01-main.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "MIMode": "lldb",
+                "miDebuggerPath": "C:/Program Files/LLVM/bin/lldb.exe"
+            }
+        }
+    ]
+}

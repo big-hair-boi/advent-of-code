@@ -1,5 +1,8 @@
 // Advent of Code 2020
 
+#ifndef HELPER_CLASSES_INT_LIST_READER_H_
+#define HELPER_CLASSES_INT_LIST_READER_H_
+
 #include "list-reader.h"
 
 namespace data {
@@ -11,3 +14,5 @@ class IntListReader : public ListReader<int> {
 };
 
 } // namespace data
+
+#endif // HELPER_CLASSES_INT_LIST_READER_H_

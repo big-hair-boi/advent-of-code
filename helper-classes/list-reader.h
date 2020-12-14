@@ -1,5 +1,8 @@
 // Advent of Code 2020
 
+#ifndef HELPER_CLASSES_LIST_READER_H_
+#define HELPER_CLASSES_LIST_READER_H_
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -47,3 +50,5 @@ class ListReaderImpl : ListReader<std::string> {
 };
 
 } // namespace data
+
+#endif // HELPER_CLASSES_LIST_READER_H_

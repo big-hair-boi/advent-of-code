@@ -17,7 +17,21 @@ class ListReader {
 
   protected:
     std::string _filename;
-    inline std::vector<std::string> GetStringListData();
+    inline std::vector<std::string> GetStringListData() {
+      std::vector<std::string> data_list;
+
+      std::ifstream file(this->_filename);
+      if (!file)
+          std::cout << "File couldn't be opened\n";
+
+      std::string str;
+      while (std::getline(file, str)) {
+          data_list.push_back(str);
+      }
+      file.close();
+
+      return data_list;
+    }
 };
 
 class ListReaderImpl : ListReader<std::string> {

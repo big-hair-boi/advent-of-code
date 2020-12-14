@@ -17,7 +17,7 @@ class ListReader {
 
   protected:
     std::string _filename;
-    std::vector<std::string> GetStringListData();
+    inline std::vector<std::string> GetStringListData();
 };
 
 class ListReaderImpl : ListReader<std::string> {

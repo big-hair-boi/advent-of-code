@@ -7,7 +7,7 @@ project(advent-of-code)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library(list-reader STATIC list-reader.h list-reader.cc)
+#add_library(list-reader STATIC list-reader.h list-reader.cc)
 #target_compile_definitions(list-reader PUBLIC list-reader)
 
 add_library(int-list-reader STATIC int-list-reader.cc)

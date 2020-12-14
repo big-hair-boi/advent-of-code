@@ -1,5 +1,6 @@
 // Advent of Code 2020
 
+#include <string>
 #include <fstream>
 #include <iostream>
 

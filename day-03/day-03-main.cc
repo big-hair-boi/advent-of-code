@@ -31,5 +31,20 @@ void PrintForestMatrix(const std::vector<std::bitset<row_length>>& matrix) {
 int main(int argc, char** argv) {
     data::ListReaderImpl list_reader("C:/Users/grhousto/advent-of-code/day-03/advent-day-03-data.txt");
     auto tree_matrix = data::ParseForestMatrix(list_reader.GetData());
-    data::PrintForestMatrix(tree_matrix);
+
+    // First half of solution: determine number of trees hit.
+    int i = 0;
+    int count = 0;
+    for (auto bit_row : tree_matrix) {
+        // Need a compliment index as bitsets are RTL
+        int compliment_index = row_length - i - 1;
+        count += bit_row[compliment_index];
+
+        std::string str = bit_row.to_string('.', '#');
+        str.replace(i, 1, bit_row[compliment_index] ? "X" : "O");
+        std::cout << str << "    count: " << std::to_string(count) << std::endl;
+
+        i = (i + 3) % row_length;
+    }
+    std::cout << "Number of trees hit: " << std::to_string(count) << std::endl;
 }

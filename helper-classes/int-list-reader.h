@@ -8,9 +8,9 @@
 namespace data {
 
 class IntListReader : public ListReader<int> {
-  public:
-    IntListReader(std::string filename) : ListReader<int>(filename) {}
-    std::vector<int> GetData() override;
+public:
+  IntListReader(std::string filename) : ListReader<int>(filename) {}
+  std::vector<int> GetData() override;
 };
 
 } // namespace data

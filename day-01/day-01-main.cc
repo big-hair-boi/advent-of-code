@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "../helper-classes/int-list-reader.h"
+#include "../helper-classes/list-reader.h"
 
 std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
                                              const std::vector<int>& value_list,
@@ -34,13 +34,12 @@ std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
 }
 
 int main(int argc, char **argv) {
-  data::IntListReader list_reader(
-      "C:/Users/grhousto/advent-of-code/day-01/advent-day-01-data.csv");
-
   int target_sum = 2020;
-  std::vector<int> int_list = list_reader.GetData();
 
-  // Get2Sum(target_sum, int_list);
+  std::string filepath(
+    "C:/Users/grhousto/advent-of-code/day-01/advent-day-01-data.csv");
+  std::vector<int> int_list = data::GetIntList(filepath);
+
   std::unordered_map<int, int> complement_map;
   for (int value : int_list) {
     complement_map.insert(std::pair<int, int>(target_sum - value, value));

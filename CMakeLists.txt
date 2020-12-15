@@ -23,27 +23,4 @@ add_subdirectory(./helper-classes)
 
 # day-01 solution
 add_executable(day-01-main ./day-01/day-01-main.cc)
-target_link_libraries(day-01-main PUBLIC int-list-reader)
-
-
-# Setup clang-format and generate a "format" target
-# find_program(CLANG_FORMAT "clang-format")
-# if(CLANG_FORMAT)
-#     message("test printing inside if statement")
-#     file(GLOB_RECURSE ALL_CXX_SOURCE_FILES
-#         ${PROJECT_SOURCE_DIR}/*.cc 
-#     )
-#     file(GLOB_RECURSE ALL_CXX_HEADER_FILES
-#         ${PROJECT_SOURCE_DIR}/*.h
-#     )
-#     message(${ALL_CXX_SOURCE_FILES})
-#     message(${ALL_CXX_HEADER_FILES})
-
-#     add_custom_target(
-#         TARGET format
-#         COMMAND clang-format
-#         -i
-#         -style=file
-#         ${ALL_CXX_SOURCE_FILES}
-#     )
-# endif()
+target_link_libraries(day-01-main PUBLIC list-reader)

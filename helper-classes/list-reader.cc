@@ -8,21 +8,32 @@
 
 namespace data {
 
-template <typename data_type>
-std::vector<std::string> ListReader<data_type>::GetStringListData() {
-  std::vector<std::string> data_list;
+std::vector<std::string> GetStringList(const std::string& filename) {
+    std::vector<std::string> data_list;
 
-  std::ifstream file(this->_filename);
-  if (!file)
-    std::cout << "File couldn't be opened\n";
+    std::ifstream file(filename);
+    if (!file) {
+        std::cout << "File couldn't be opened\n";
+        return data_list;
+    }
 
-  std::string str;
-  while (std::getline(file, str)) {
-    data_list.push_back(str);
+    std::string str;
+    while (std::getline(file, str)) {
+        data_list.push_back(str);
+    }
+    file.close();
+
+    return data_list;
+}
+
+std::vector<int> GetIntList(const std::string& filename) {
+    std::vector<int> ret;
+  std::vector<std::string> string_list = GetStringList(filename);
+
+  for (std::string str : string_list) {
+    ret.push_back(std::stoi(str));
   }
-  file.close();
-
-  return data_list;
+  return ret;
 }
 
 } // namespace data

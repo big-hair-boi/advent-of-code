@@ -4,6 +4,8 @@
 
 #include "password-entry.h"
 
+// To reviewers: while this may not use std functions, this should be minimal
+// iterations over the string (2 passes to be exact).
 PasswordEntry::PasswordEntry(const std::string line_entry) {
     // Heuristic assumption: there are no numbers larger than 2 digits
     int lindex = 0;
@@ -11,28 +13,37 @@ PasswordEntry::PasswordEntry(const std::string line_entry) {
     if (line_entry[rindex] != '-') {
         ++rindex;
     }
-    _low_range = std::stoi(line_entry.substr(lindex, rindex));
+    _low_value = std::stoi(line_entry.substr(lindex, rindex));
     lindex = ++rindex;
-
-    //std::cout << "Low Range: " << std::to_string(_low_range) << "\n";
 
     // Same heuristic assumption as before: no more than 2 digit numbers
     if (line_entry[++rindex] != ' ') {
         ++rindex;
     }
-    _high_range = std::stoi(line_entry.substr(lindex, rindex));
-
-    // std::cout << "High Range: " << std::to_string(_high_range) << "\n";
+    _high_value = std::stoi(line_entry.substr(lindex, rindex));
 
     // Heuristic assumption: there is only a single character to check for
     lindex = ++rindex;
     _required_letter = line_entry[rindex++];
 
-    // std::cout << "Required letter: " << _required_letter << "\n";
-
     // Heuristic assumption: there is always ": " after every required letter
     lindex += 3;
     _password = line_entry.substr(lindex, line_entry.length());
+}
 
-    //std::cout << "Password: '" << _password << "'\n";
+bool PasswordEntry::IsValid() {
+    /*
+    // Original validation method
+    int count = 0;
+    for (char c : _password) {
+        if (c == _required_letter) {
+            ++count;
+        }
+    }
+    return count >= _low_value && count <= _high_value;
+    */
+
+   // Second validation method
+    return (_password[_low_value - 1] == _required_letter)
+        != (_password[_high_value - 1] == _required_letter);
 }

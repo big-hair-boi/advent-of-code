@@ -12,11 +12,13 @@ class PasswordEntry {
     PasswordEntry(const PasswordEntry&) = delete;
     const PasswordEntry& operator=(const PasswordEntry&) = delete;
 
+    bool IsValid();
+
   private:
     std::string _password;
     char _required_letter;
-    int _low_range;
-    int _high_range;
+    int _low_value;
+    int _high_value;
 };
 
 #endif // DAY_02_PASSWORD_ENTRY_H_

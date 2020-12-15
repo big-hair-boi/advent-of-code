@@ -5,7 +5,7 @@
 #include "../helper-classes/int-list-reader.h"
 
 std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
-                                             std::vector<int> value_list,
+                                             const std::vector<int>& value_list,
                                              int used_value = INT_MIN) {
   // build the complement map
   std::unordered_map<int, int> complement_map;
@@ -19,7 +19,7 @@ std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
     if (value == used_value)
       continue;
 
-    auto item = complement_map.find(value);
+    const auto item = complement_map.find(value);
     if (item != complement_map.end() && value != item->second) {
       std::cout << "Found 2sum Pair: " << std::to_string(value) << " + "
                 << std::to_string(item->second) << " = "
@@ -46,8 +46,8 @@ int main(int argc, char **argv) {
     complement_map.insert(std::pair<int, int>(target_sum - value, value));
   }
 
-  for (auto pair : complement_map) {
-    auto match = Get2Sum(pair.first, int_list, pair.second);
+  for (const auto pair : complement_map) {
+    const auto match = Get2Sum(pair.first, int_list, pair.second);
 
     if (match) {
       std::cout << "Found 3sum: " << std::to_string(match.get()->first) << " + "

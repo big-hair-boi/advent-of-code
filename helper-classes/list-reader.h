@@ -25,8 +25,10 @@ protected:
     std::vector<std::string> data_list;
 
     std::ifstream file(this->_filename);
-    if (!file)
+    if (!file) {
       std::cout << "File couldn't be opened\n";
+      return data_list;
+    }
 
     std::string str;
     while (std::getline(file, str)) {

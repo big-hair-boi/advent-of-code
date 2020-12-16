@@ -13,7 +13,7 @@ std::vector<std::string> GetStringList(const std::string& filename) {
 
     std::ifstream file(filename);
     if (!file) {
-        std::cout << "File couldn't be opened\n";
+        std::cout << "File couldn't be opened" << std::endl;
         return data_list;
     }
 

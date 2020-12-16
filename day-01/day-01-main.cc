@@ -28,13 +28,13 @@ std::pair<int, int> Get2Sum(int target_value,
     if (item != complement_map.end() && value != item->second) {
       std::cout << "Found 2sum Pair: " << std::to_string(value) << " + "
                 << std::to_string(item->second) << " = "
-                << std::to_string(target_value) << "\n";
+                << std::to_string(target_value) << std::endl;
       return std::pair<int, int>(value, item->second);
     }
   }
 
   std::cout << "Unable to find 2sum pair for " << std::to_string(target_value)
-            << "\n";
+            << std::endl;
   return empty_pair;
 }
 
@@ -51,12 +51,12 @@ std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_li
       std::cout << "Found 3sum: " << std::to_string(match.first) << " + "
                 << std::to_string(match.second) << " + "
                 << std::to_string(pair.second) << " = "
-                << std::to_string(target_sum) << "\n";
+                << std::to_string(target_sum) << std::endl;
       return std::make_tuple(match.first, match.second, pair.second);
     }
   }
 
-  std::cout << "Unable to find 3sum set.\n";
+  std::cout << "Unable to find 3sum set." << std::endl;
   return std::tuple<int, int, int>();
 }
 

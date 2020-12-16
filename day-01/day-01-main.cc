@@ -1,8 +1,11 @@
 // Advent of Code 2020
 
+#include <tuple>
 #include <unordered_map>
 
 #include "../helper-classes/list-reader.h"
+
+namespace {
 
 std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
                                              const std::vector<int>& value_list,
@@ -33,13 +36,7 @@ std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
   return nullptr;
 }
 
-int main(int argc, char **argv) {
-  int target_sum = 2020;
-
-  std::string filepath(
-    "C:/Users/grhousto/advent-of-code/day-01/advent-day-01-data.csv");
-  std::vector<int> int_list = data::GetIntList(filepath);
-
+std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_list) {
   std::unordered_map<int, int> complement_map;
   for (int value : int_list) {
     complement_map.insert(std::pair<int, int>(target_sum - value, value));
@@ -53,10 +50,21 @@ int main(int argc, char **argv) {
                 << std::to_string(match.get()->second) << " + "
                 << std::to_string(pair.second) << " = "
                 << std::to_string(target_sum) << "\n";
-      return 0;
+      return std::make_tuple(match.get()->first, match.get()->second, pair.second);
     }
   }
 
   std::cout << "Unable to find 3sum set.\n";
-  return 1;
+  return std::tuple<int, int, int>();
+}
+
+} // namespace
+
+int main(int argc, char **argv) {
+  int target_sum = 2020;
+
+  std::string filepath(
+    "C:/Users/grhousto/advent-of-code/day-01/advent-day-01-data.csv");
+  std::vector<int> int_list = data::GetIntList(filepath);
+  Get3Sum(target_sum, int_list);
 }

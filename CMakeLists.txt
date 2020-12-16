@@ -24,3 +24,7 @@ add_subdirectory(./helper-classes)
 # day-01 solution
 add_executable(day-01-main ./day-01/day-01-main.cc)
 target_link_libraries(day-01-main PUBLIC list-reader)
+
+#day-04 solution
+add_executable(day-04-main ./day-04/day-04-main.cc)
+target_link_libraries(day-04-main PUBLIC string-manipulation)

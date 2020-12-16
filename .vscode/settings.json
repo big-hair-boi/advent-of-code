@@ -57,6 +57,7 @@
         "map": "cpp",
         "xtree": "cpp",
         "list": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "unordered_set": "cpp"
     }
 }

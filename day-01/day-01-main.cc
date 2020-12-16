@@ -7,7 +7,9 @@
 
 namespace {
 
-std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
+constexpr std::pair<int, int> empty_pair = {0, 0};
+
+std::pair<int, int> Get2Sum(int target_value,
                                              const std::vector<int>& value_list,
                                              int used_value = INT_MIN) {
   // build the complement map
@@ -27,13 +29,13 @@ std::unique_ptr<std::pair<int, int>> Get2Sum(int target_value,
       std::cout << "Found 2sum Pair: " << std::to_string(value) << " + "
                 << std::to_string(item->second) << " = "
                 << std::to_string(target_value) << "\n";
-      return std::make_unique<std::pair<int, int>>(value, item->second);
+      return std::pair<int, int>(value, item->second);
     }
   }
 
   std::cout << "Unable to find 2sum pair for " << std::to_string(target_value)
             << "\n";
-  return nullptr;
+  return empty_pair;
 }
 
 std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_list) {
@@ -45,12 +47,12 @@ std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_li
   for (const auto pair : complement_map) {
     const auto match = Get2Sum(pair.first, int_list, pair.second);
 
-    if (match) {
-      std::cout << "Found 3sum: " << std::to_string(match.get()->first) << " + "
-                << std::to_string(match.get()->second) << " + "
+    if (match != empty_pair) {
+      std::cout << "Found 3sum: " << std::to_string(match.first) << " + "
+                << std::to_string(match.second) << " + "
                 << std::to_string(pair.second) << " = "
                 << std::to_string(target_sum) << "\n";
-      return std::make_tuple(match.get()->first, match.get()->second, pair.second);
+      return std::make_tuple(match.first, match.second, pair.second);
     }
   }
 

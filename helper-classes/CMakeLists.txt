@@ -7,4 +7,5 @@ project(advent-of-code)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library(list-reader STATIC list-reader-impl.cc)
+# create object files for general reading in of list data
+add_library(list-reader STATIC list-reader.cc)

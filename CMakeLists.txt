@@ -13,7 +13,7 @@ set(CMAKE_CXX_COMPILER "clang++")
 project(advent-of-code VERSION 1.0)
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include(ClangFormat.cmake)
@@ -28,3 +28,4 @@ target_link_libraries(day-01-main PUBLIC list-reader)
 #day-04 solution
 add_executable(day-04-main ./day-04/day-04-main.cc)
 target_link_libraries(day-04-main PUBLIC string-manipulation)
+target_link_libraries(day-04-main PUBLIC list-reader)

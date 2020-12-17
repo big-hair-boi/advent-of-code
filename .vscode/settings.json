@@ -59,5 +59,9 @@
         "list": "cpp",
         "xhash": "cpp",
         "unordered_set": "cpp"
-    }
+    },
+
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
 }

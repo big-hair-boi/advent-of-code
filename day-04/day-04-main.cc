@@ -9,6 +9,7 @@
 
 constexpr char filepath[] =
     "C:/Users/grhousto/advent-of-code/day-04/advent-day-04-data.txt";
+constexpr int max_key_count = 8;
 
 using Credential = std::unordered_map<std::string, std::string>;
 
@@ -47,18 +48,27 @@ std::vector<Credential> BuildCredentialList() {
   return ret;
 }
 
+bool IsCredentialValidPart1(Credential credential) {
+  static constexpr char optional_key[] = "cid";
+  int num_keys = credential.size();
+  return num_keys == max_key_count ||
+         (num_keys == max_key_count - 1 &&
+          credential.find(optional_key) == credential.end());
+}
+
 } // namespace
 
 int main(int argc, char **argv) {
   std::vector<Credential> credential_list = BuildCredentialList();
 
-  // Test print credentials being successfully converted to objects
-  for (const auto credential : credential_list) {
-    for (const auto pair : credential) {
-      std::cout << pair.first << ":" << pair.second << std::endl;
+  int count = 0;
+  for (Credential credential : credential_list) {
+    if (IsCredentialValidPart1(credential)) {
+      ++count;
     }
-    std::cout << std::endl;
   }
+  std::cout << "Part 1 Num of Valid Credentials: " << std::to_string(count)
+            << std::endl;
 
   return 0;
 }

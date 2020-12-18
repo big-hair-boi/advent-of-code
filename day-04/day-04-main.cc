@@ -60,26 +60,26 @@ std::ostream& operator<<(std::ostream& os, const Credential& c)
 
 bool IsCredentialValidPart1(const Credential credential) {
   static constexpr char optional_key[] = "cid";
-  int num_keys = credential.size();
+  const int num_keys = credential.size();
   return num_keys == max_key_count ||
          (num_keys == max_key_count - 1 &&
           credential.find(optional_key) == credential.end());
 }
 
 bool IsValidYear(const Pair &pair) {
-  std::string::size_type len;
+  std::string::size_type len = 0;
   const int value = std::stoi(pair.second, &len);
   if (len != 4) {
     return false;
   }
-  const std::string key = pair.first;
+  const std::string& key = pair.first;
   return (key == "byr" && value >= 1920 && value <= 2002) ||
          (key == "iyr" && value >= 2010 && value <= 2020) ||
          (key == "eyr" && value >= 2020 && value <= 2030);
 }
 
 bool IsValidHeight(const Pair &pair) {
-  const std::string str_value = pair.second;
+  const std::string& str_value = pair.second;
   const int str_size = str_value.size();
   if (str_size < 4)
     return false;
@@ -102,7 +102,7 @@ bool IsValidHeight(const Pair &pair) {
 }
 
 bool IsValidHairColor(const Pair &pair) {
-  const std::string str_value = pair.second;
+  const std::string& str_value = pair.second;
   if (str_value.size() != 7)
     return false;
 
@@ -113,7 +113,7 @@ bool IsValidEyeColor(const Pair &pair) {
   static const std::unordered_set<std::string> valid_colors = {
       "amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
 
-  const std::string value = pair.second;
+  const std::string& value = pair.second;
   if (value.size() != 3)
     return false;
 
@@ -178,11 +178,8 @@ int main(int argc, char **argv) {
             << std::endl;
 
   int count2 = 0;
-  for (auto i = 0; i < credential_list.size(); ++i) {
-    if (IsCredentialValidPart2(credential_list[i])) {
-      if (i == 143) {
-        std::cout << "the culprit is: " << std::endl << credential_list[i];
-      }
+  for (const auto& credential : credential_list) {
+    if (IsCredentialValidPart2(credential)) {
       ++count2;
     }
   }

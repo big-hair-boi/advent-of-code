@@ -1,6 +1,7 @@
 // Advent of Code
 
 #include <cstring>
+#include <iostream>
 
 #include "string-manipulation.h"
 
@@ -15,6 +16,12 @@ std::vector<std::string> string_split(const std::string &str,
        token = std::strtok(nullptr, &delim)) {
       ret.push_back(std::string(token));
   }
+
+  std::cout << std::endl << "string split on '" << delim << "'" << std::endl;
+  for (const auto str : ret) {
+    std::cout << str << std::endl;
+  }
+  std::cout << std::endl;
 
   return ret;
 }

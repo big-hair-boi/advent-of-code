@@ -65,8 +65,9 @@ std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_li
 int main(int argc, char **argv) {
   int target_sum = 2020;
 
-  std::string filepath(
-    "C:/Users/grhousto/advent-of-code/day-01/advent-day-01-data.csv");
+  constexpr char filepath[] =
+    "../day-01/advent-day-01-data.csv";
+
   std::vector<int> int_list = data::GetIntList(filepath);
   Get3Sum(target_sum, int_list);
 }

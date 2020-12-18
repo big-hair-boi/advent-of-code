@@ -1,5 +1,5 @@
 // Advent of Code 2020
-
+#include <array>
 #include <iostream>
 #include <regex>
 #include <string>
@@ -10,7 +10,7 @@
 #include "../helper-classes/string-manipulation.h"
 
 constexpr char filepath[] =
-    "C:/Users/grhousto/advent-of-code/day-04/advent-day-04-data.txt";
+    "../day-04/advent-day-04-data.txt";
 constexpr int max_key_count = 8;
 
 using Credential = std::unordered_map<std::string, std::string>;
@@ -20,7 +20,7 @@ namespace {
 
 Credential CreateCredentialObject(std::vector<std::string> str_list) {
   Credential ret;
-  for (std::string str : str_list) {
+  for (const std::string& str : str_list) {
     for (std::string entry : data::string_split(str, ' ')) {
       const auto entry_components = data::string_split(entry, ':');
       ret.insert(std::pair(entry_components.at(0), entry_components.at(1)));
@@ -31,59 +31,56 @@ Credential CreateCredentialObject(std::vector<std::string> str_list) {
 
 std::vector<Credential> BuildCredentialList() {
   std::vector<Credential> ret;
-
   std::vector<std::string> str_list;
-  for (std::string line : data::GetStringList(filepath)) {
-    if (line != "\n" && line.size() > 1) {
-      str_list.push_back(line);
-    } else {
+  for (const std::string& line : data::GetStringList(filepath)) {
+    // This line is a demarcation between credentials.
+    if (std::all_of(line.begin(), line.end(),isspace)) {
       ret.push_back(CreateCredentialObject(str_list));
       str_list.clear();
+    } else {
+      str_list.push_back(line);
     }
   }
 
   // Handle case of final entry being read in but not converted to an object
-  if (str_list.size() != 0) {
+  if (!str_list.empty()) {
     ret.push_back(CreateCredentialObject(str_list));
   }
 
   return ret;
 }
 
-void PrintCredential(const Credential &credential) {
-  for (const auto pair : credential) {
-    std::cout << pair.first << ":" << pair.second << std::endl;
+std::ostream& operator<<(std::ostream& os, const Credential& c)
+{
+  for (const auto pair : c) {
+    os << pair.first << ":" << pair.second << std::endl;
   }
+  return os;
 }
 
 bool IsCredentialValidPart1(const Credential credential) {
   static constexpr char optional_key[] = "cid";
-  int num_keys = credential.size();
+  const int num_keys = credential.size();
   return num_keys == max_key_count ||
          (num_keys == max_key_count - 1 &&
           credential.find(optional_key) == credential.end());
 }
 
 bool IsValidYear(const Pair &pair) {
-  if (pair.second.size() != 4)
+  std::string::size_type len = 0;
+  const int value = std::stoi(pair.second, &len);
+  if (len != 4) {
     return false;
-
-  if (pair.second.find_first_not_of("0123456789") != std::string::npos)
-    return false;
-  const int value = std::stoi(pair.second);
-
-  const std::string key = pair.first;
+  }
+  const std::string& key = pair.first;
   return (key == "byr" && value >= 1920 && value <= 2002) ||
-         (key == "iyr" && value >= 1920 && value <= 2020) ||
+         (key == "iyr" && value >= 2010 && value <= 2020) ||
          (key == "eyr" && value >= 2020 && value <= 2030);
 }
 
 bool IsValidHeight(const Pair &pair) {
-  const std::string str_value = pair.second;
+  const std::string& str_value = pair.second;
   const int str_size = str_value.size();
-  // std::cout << "Height str value: '" << str_value << "'" << std::endl <<
-  // std::flush;
-
   if (str_size < 4)
     return false;
 
@@ -96,7 +93,6 @@ bool IsValidHeight(const Pair &pair) {
   const int height_value = std::stoi(value_substr);
 
   const std::string unit = pair.second.substr(str_size - 2, str_size);
-  // std::cout << "unit: '" << unit << "'" << std::endl << std::flush;
   if (unit == "cm")
     return height_value >= 150 && height_value <= 193;
   else if (unit == "in")
@@ -106,7 +102,7 @@ bool IsValidHeight(const Pair &pair) {
 }
 
 bool IsValidHairColor(const Pair &pair) {
-  const std::string str_value = pair.second;
+  const std::string& str_value = pair.second;
   if (str_value.size() != 7)
     return false;
 
@@ -117,7 +113,7 @@ bool IsValidEyeColor(const Pair &pair) {
   static const std::unordered_set<std::string> valid_colors = {
       "amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
 
-  const std::string value = pair.second;
+  const std::string& value = pair.second;
   if (value.size() != 3)
     return false;
 
@@ -133,59 +129,38 @@ bool IsValidPid(const Pair &pair) {
 }
 
 bool IsCredentialValidPart2(Credential credential) {
-  // PrintCredential(credential);
-  const auto byr_pair = credential.find("byr");
-  if (byr_pair == credential.end() || !IsValidYear(*byr_pair)) {
-    // std::cout << "failed byr; " << std::endl << std::flush;
-    return false;
+  static constexpr std::array<const char*, 3> year_fields {{"eyr", "iyr", "byr"}};
+  for (auto* year : year_fields) {
+    const auto pair = credential.find(year);
+    if (pair == credential.end() || !IsValidYear(*pair)) {
+      return false;
+    }
   }
-  // std::cout << "checked byr; " << std::flush;
-
-  const auto iyr_pair = credential.find("iyr");
-  if (iyr_pair == credential.end() || !IsValidYear(*iyr_pair)) {
-    // std::cout << "failed iyr; " << std::endl << std::flush;
-    return false;
-  }
-  // std::cout << "checked iyr; " << std::flush;
-
-  const auto eyr_pair = credential.find("eyr");
-  if (eyr_pair == credential.end() || !IsValidYear(*eyr_pair)) {
-    // std::cout << "failed eyr; " << std::endl << std::flush;
-    return false;
-  }
-  // std::cout << "checked eyr; " << std::flush;
 
   const auto hgt_pair = credential.find("hgt");
   if (hgt_pair == credential.end() || !IsValidHeight(*hgt_pair)) {
-    std::cout << "failed hgt; " << std::endl << std::flush;
     return false;
   }
-  // std::cout << "checked hgt; " << std::flush;
 
   const auto hcl_pair = credential.find("hcl");
   if (hcl_pair == credential.end() || !IsValidHairColor(*hcl_pair)) {
-    // std::cout << "failed hcl; " << std::endl << std::flush;
     return false;
   }
-  // std::cout << "checked hcl; " << std::flush;
 
   const auto ecl_pair = credential.find("ecl");
   if (ecl_pair == credential.end() || !IsValidEyeColor(*ecl_pair)) {
-    // std::cout << "failed ecl; " << std::endl << std::flush;
     return false;
   }
-  // std::cout << "checked ecl; " << std::flush;
 
   const auto pid_pair = credential.find("pid");
   if (pid_pair == credential.end() || !IsValidPid(*pid_pair)) {
-    // std::cout << "failed pid; " << std::endl << std::flush;
     return false;
   }
-  // std::cout << "checked pid; " << std::flush;
 
-  const auto cid_pair = credential.find("cid");
-  return (credential.size() == 8 && cid_pair != credential.end()) ||
-         credential.size() == 7;
+  if (credential.size() == 7) {
+    return true;
+  }
+  return (credential.size() == 8 && credential.find("cid") != credential.end());
 }
 
 } // namespace
@@ -203,12 +178,10 @@ int main(int argc, char **argv) {
             << std::endl;
 
   int count2 = 0;
-  for (Credential credential : credential_list) {
+  for (const auto& credential : credential_list) {
     if (IsCredentialValidPart2(credential)) {
-      PrintCredential(credential);
       ++count2;
     }
-    std::cout << std::endl;
   }
   std::cout << "Part 2 Num of Valid Credentials: " << std::to_string(count2)
             << std::endl;

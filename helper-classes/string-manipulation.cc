@@ -1,28 +1,21 @@
 // Advent of Code
+#include "string-manipulation.h"
 
 #include <cstring>
 #include <iostream>
-
-#include "string-manipulation.h"
+#include <sstream>
 
 namespace data {
 
 std::vector<std::string> string_split(const std::string &str,
-                                                     char delim = '\n') {
+                                      char delim = '\n') {
   std::vector<std::string> ret;
-
-  char *str_mutable = const_cast<char *>(str.c_str());
-  for (char *token = std::strtok(str_mutable, &delim); token != nullptr;
-       token = std::strtok(nullptr, &delim)) {
-      ret.push_back(std::string(token));
+  std::stringstream ss(str);
+  while(ss.good()) {
+      std::string substr;
+      std::getline(ss, substr, delim);
+      ret.push_back(substr);
   }
-
-  std::cout << std::endl << "string split on '" << delim << "'" << std::endl;
-  for (const auto str : ret) {
-    std::cout << str << std::endl;
-  }
-  std::cout << std::endl;
-
   return ret;
 }
 

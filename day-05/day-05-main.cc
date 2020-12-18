@@ -1,6 +1,8 @@
 // Advent of Code 2020
 
+#include <algorithm>
 #include <cmath>
+#include <vector>
 
 #include "../helper-classes/list-reader.h"
 
@@ -39,6 +41,8 @@ int BinarySearchHelper(const std::string &search_commands, char move_left,
   return left;
 }
 
+int GetSeatID(const Seat &seat) { return seat.first * 8 + seat.second; }
+
 } // namespace
 
 Seat DetermineSeat(const std::string &seat_code) {
@@ -52,22 +56,37 @@ Seat DetermineSeat(const std::string &seat_code) {
 std::ostream &operator<<(std::ostream &os, const Seat &s) {
   return os << "r:" << s.first << ","
             << "c:" << s.second << ","
-            << "id:" << std::to_string(s.first * 8 + s.second) << std::endl;
+            << "id:" << std::to_string(GetSeatID(s)) << std::endl;
 }
 
 int main(int argc, char **argv) {
-  // Part 1
-  int max_id = -1;
+  std::vector<int /* IDs */> id_list;
+  int max_id = INT_MIN;
+  int min_id = INT_MAX;
+
   for (const auto &seat_code : data::GetStringList(filepath)) {
     std::cout << "Seat code: '" << seat_code << "'" << std::endl;
     Seat seat = DetermineSeat(seat_code);
     std::cout << seat << std::endl << std::endl;
 
-    int id = seat.first * 8 + seat.second;
+    int id = GetSeatID(seat);
+    id_list.push_back(id);
+
     if (id > max_id)
       max_id = id;
+    if (id < min_id)
+      min_id = id;
   }
   std::cout << "Part 1 - Max Seat ID = " << std::to_string(max_id) << std::endl;
+
+  std::sort(id_list.begin(), id_list.end());
+  for (int i = 1; i < id_list.size(); ++i) {
+    if (id_list[i] - id_list[i - 1] != 1) {
+      std::cout << "Part 2 - Found Seat ID: " << std::to_string(id_list[i] - 1)
+                << std::endl;
+      break;
+    }
+  }
 
   return 0;
 }

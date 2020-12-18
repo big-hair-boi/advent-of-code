@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Day 01 Main",
+            "name": "Day 04 Main",
             "type": "cppdbg",
             "additionalSOLibSearchPath": "${workspaceFolder}/build;https://symweb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/day-01-main.exe",
+            "program": "${workspaceFolder}/build/day-04-main.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}/build",

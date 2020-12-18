@@ -1,8 +1,10 @@
 // Advent of Code 2020
 
 #include <iostream>
+#include <regex>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "../helper-classes/list-reader.h"
 #include "../helper-classes/string-manipulation.h"
@@ -21,7 +23,6 @@ Credential CreateCredentialObject(std::vector<std::string> str_list) {
   for (std::string str : str_list) {
     for (std::string entry : data::string_split(str, ' ')) {
       const auto entry_components = data::string_split(entry, ':');
-      std::cout << "";
       ret.insert(std::pair(entry_components.at(0), entry_components.at(1)));
     }
   }
@@ -80,9 +81,13 @@ bool IsValidYear(const Pair &pair) {
 bool IsValidHeight(const Pair &pair) {
   const std::string str_value = pair.second;
   const int str_size = str_value.size();
-  //std::cout << "Height str value: '" << str_value << "'" << std::endl << std::flush;
+  // std::cout << "Height str value: '" << str_value << "'" << std::endl <<
+  // std::flush;
 
   if (str_size < 4)
+    return false;
+
+  if (!std::regex_match(str_value, std::regex("[0-9]{2,3}(in|cm)")))
     return false;
 
   const std::string value_substr = str_value.substr(0, str_size - 2);
@@ -91,7 +96,7 @@ bool IsValidHeight(const Pair &pair) {
   const int height_value = std::stoi(value_substr);
 
   const std::string unit = pair.second.substr(str_size - 2, str_size);
-  //std::cout << "unit: '" << unit << "'" << std::endl << std::flush;
+  // std::cout << "unit: '" << unit << "'" << std::endl << std::flush;
   if (unit == "cm")
     return height_value >= 150 && height_value <= 193;
   else if (unit == "in")
@@ -102,26 +107,21 @@ bool IsValidHeight(const Pair &pair) {
 
 bool IsValidHairColor(const Pair &pair) {
   const std::string str_value = pair.second;
-  if (str_value.size() != 7 || str_value[0] != '#')
+  if (str_value.size() != 7)
     return false;
 
-  for (int i = 1; i < str_value.size(); ++i) {
-    char c = str_value[i];
-    // Equivalent to regex of [^0-9a-f]
-    if ((c < '0' || c > '9') && (c < 'a' || c > 'f'))
-      return false;
-  }
-
-  return true;
+  return std::regex_match(str_value, std::regex("#[0-9a-f]{6}"));
 }
 
 bool IsValidEyeColor(const Pair &pair) {
+  static const std::unordered_set<std::string> valid_colors = {
+      "amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
+
   const std::string value = pair.second;
   if (value.size() != 3)
     return false;
 
-  return value == "amb" || value == "blu" || value == "brn" || value == "gry" ||
-         value == "grn" || value == "hzl" || value == "oth";
+  return valid_colors.find(value) != valid_colors.end();
 }
 
 bool IsValidPid(const Pair &pair) {

@@ -30,6 +30,10 @@ add_executable(day-04-main ./day-04/day-04-main.cc)
 target_link_libraries(day-04-main PUBLIC string-manipulation)
 target_link_libraries(day-04-main PUBLIC list-reader)
 
-#day-05 solution
+# day-05 solution
 add_executable(day-05-main ./day-05/day-05-main.cc)
 target_link_libraries(day-05-main PUBLIC list-reader)
+
+# day-06 solution
+add_executable(day-06-main ./day-06/day-06-main.cc)
+target_link_libraries(day-06-main PUBLIC list-reader)

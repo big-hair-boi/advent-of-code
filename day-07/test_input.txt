@@ -5,3 +5,4 @@ dark yellow bags contain 2 dark green bags.
 dark green bags contain 2 dark blue bags.
 dark blue bags contain 2 dark violet bags.
 dark violet bags contain no other bags.
+stupid test bags contain 1 shiny gold bags.

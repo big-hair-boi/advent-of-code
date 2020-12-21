@@ -18,7 +18,6 @@ std::vector<std::string> string_split(const std::string &str,
 
   std::vector<std::string> tokens{first, last};
   for (auto t : tokens) {
-      std::cout << t << std::endl;
       ret.push_back(t);
   }
   return ret;

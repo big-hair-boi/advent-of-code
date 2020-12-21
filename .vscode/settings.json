@@ -65,7 +65,9 @@
       "xlocbuf": "cpp",
       "xlocmes": "cpp",
       "xlocmon": "cpp",
-      "xloctime": "cpp"
+      "xloctime": "cpp",
+      "bitset": "cpp",
+      "queue": "cpp"
     },
 
     "editor.detectIndentation": false,

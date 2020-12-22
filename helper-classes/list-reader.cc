@@ -13,25 +13,24 @@ std::vector<std::string> GetStringList(const std::string& filename) {
 
     std::ifstream file(filename);
     if (!file) {
-        std::cout << "File couldn't be opened:" << filename << std::endl;
         return data_list;
     }
 
     std::string str;
     while (std::getline(file, str)) {
-        data_list.push_back(str);
+      data_list.push_back(str);
     }
     file.close();
 
     return data_list;
 }
 
-std::vector<int> GetIntList(const std::string& filename) {
-    std::vector<int> ret;
+std::vector<long long int> GetIntList(const std::string& filename) {
+  std::vector<long long int> ret;
   std::vector<std::string> string_list = GetStringList(filename);
 
   for (std::string str : string_list) {
-    ret.push_back(std::stoi(str));
+    ret.push_back(std::stoll(str));
   }
   return ret;
 }

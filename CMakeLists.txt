@@ -44,3 +44,8 @@ add_executable(day-07-main ./day-07/day-07-main.cc)
 target_link_libraries(day-07-main PUBLIC string-manipulation)
 target_link_libraries(day-07-main PUBLIC list-reader)
 target_link_libraries(day-07-main PUBLIC graph)
+
+# day-08 solution
+add_executable(day-08-main ./day-08/day-08-main.cc)
+target_link_libraries(day-08-main PUBLIC string-manipulation)
+target_link_libraries(day-08-main PUBLIC list-reader)

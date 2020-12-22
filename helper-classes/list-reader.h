@@ -10,6 +10,7 @@
 
 namespace data {
 
+// Read in data from file and return as a line-by-line list.
 std::vector<std::string> GetStringList(const std::string& filename);
 std::vector<int> GetIntList(const std::string& filename);
 

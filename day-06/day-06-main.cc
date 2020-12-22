@@ -9,22 +9,19 @@
 using CustomForm = std::array<bool, 26>;
 
 constexpr char filepath[] = "../day-06/advent-day-06-data.txt";
-constexpr const CustomForm EMPTY_FORM = {false, false, false, false, false,
-                                         false, false, false, false, false,
-                                         false, false, false, false, false,
-                                         false, false, false, false, false,
-                                         false, false, false, false, false,
-                                         false};
-constexpr const CustomForm FULL_FORM = {true, true, true, true, true,
-                                         true, true, true, true, true,
-                                         true, true, true, true, true,
-                                         true, true, true, true, true,
-                                         true, true, true, true, true,
-                                         true};
+constexpr const CustomForm EMPTY_FORM = {
+    false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false, false,
+    false, false, false, false, false, false, false, false};
+constexpr const CustomForm FULL_FORM = {
+    true, true, true, true, true, true, true, true, true,
+    true, true, true, true, true, true, true, true, true,
+    true, true, true, true, true, true, true, true};
 
 namespace {
 
-CustomForm CreateCustomFormObjectPart1(const std::vector<std::string> &str_list) {
+CustomForm
+CreateCustomFormObjectPart1(const std::vector<std::string> &str_list) {
   CustomForm ret = EMPTY_FORM;
   for (const std::string &str : str_list) {
     for (const char &c : str) {
@@ -34,7 +31,8 @@ CustomForm CreateCustomFormObjectPart1(const std::vector<std::string> &str_list)
   return ret;
 }
 
-CustomForm CreateCustomFormObjectPart2(const std::vector<std::string> &str_list) {
+CustomForm
+CreateCustomFormObjectPart2(const std::vector<std::string> &str_list) {
   std::vector<CustomForm> form_list;
   for (const std::string &str : str_list) {
     CustomForm form = EMPTY_FORM;
@@ -89,9 +87,9 @@ std::vector<CustomForm> BuildCustomFormList() {
   return ret;
 }
 
-int TotalQuestionsAnswered(const CustomForm& form) {
+int TotalQuestionsAnswered(const CustomForm &form) {
   int count = 0;
-  for (const bool& answer_yes : form) {
+  for (const bool &answer_yes : form) {
     if (answer_yes)
       ++count;
   }
@@ -103,10 +101,11 @@ int TotalQuestionsAnswered(const CustomForm& form) {
 int main(int argc, char **argv) {
   const auto customs_list = BuildCustomFormList();
   int count = 0;
-  for (const auto& cusotms_form : customs_list) {
+  for (const auto &cusotms_form : customs_list) {
     count += TotalQuestionsAnswered(cusotms_form);
   }
-  std::cout << "Part 1 - Total yes answers: " << std::to_string(count) << std::endl;
+  std::cout << "Part 1 - Total yes answers: " << std::to_string(count)
+            << std::endl;
 
   return 0;
 }

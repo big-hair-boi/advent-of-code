@@ -4,13 +4,13 @@
 
 // #include <cassert>
 
-
 // // template <typename key_T, typename value_T>
 // // DirectedGraph<key_T, value_T>::DirectedGraph(const std::string& filepath)
 // //     : _nodes(std::unordered_map<std::string, std::unique_ptr<value_T>>),
 // //       _filepath(filepath) {
 // //   template<typename input_type>
-// //   for (const input_type& input : DirectedGraph<key_T, value_T>::CreateInputList()) {
+// //   for (const input_type& input : DirectedGraph<key_T,
+// value_T>::CreateInputList()) {
 
 // //   }
 // // }

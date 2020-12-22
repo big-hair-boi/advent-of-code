@@ -17,8 +17,9 @@ std::optional<int> FindXmasError(const std::vector<long long int> &data_list,
                                  int starting_index, int window_size) {
   for (int i = starting_index + window_size; i < data_list.size(); ++i) {
     const auto &possible2sum = compute::Get2Sum(
-        data_list[i], std::vector<long long int>(data_list.begin() + i - window_size,
-                                       data_list.begin() + i));
+        data_list[i],
+        std::vector<long long int>(data_list.begin() + i - window_size,
+                                   data_list.begin() + i));
     if (possible2sum == compute::empty_2sum) {
       return data_list[i];
     }

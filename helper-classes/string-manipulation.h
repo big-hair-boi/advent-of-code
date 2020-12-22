@@ -8,7 +8,8 @@
 
 namespace data {
 
-std::vector<std::string> string_split(const std::string &str, const std::string& delim);
+std::vector<std::string> string_split(const std::string &str,
+                                      const std::string &delim);
 
 } // namespace data
 

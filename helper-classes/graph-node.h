@@ -28,7 +28,7 @@ public:
   GraphNode &operator=(GraphNode &) = delete;
 
   void SetEdge(const EdgeInfo &edge);
-  std::optional<int> GetEdge(const std::string& key);
+  std::optional<int> GetEdge(const std::string &key);
 
 private:
   // virtual EdgeInfo ExtractInfoFromEdgeStr(const std::string& edge_str) = 0;

@@ -7,7 +7,6 @@
 #include <string>
 #include <unordered_map>
 
-
 // class BagRule {
 //  public:
 //   explicit BagRule(const std::string& input_line);

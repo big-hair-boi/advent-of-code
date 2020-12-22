@@ -11,7 +11,6 @@
 #include "../helper-classes/string-manipulation.h"
 #include "bag_rules.h"
 
-
 using Edge = std::pair<std::string, int>;
 using BagRule = std::pair<std::string /* origin */, Edge>;
 using BagMap = std::unordered_map<std::string, std::vector<Edge>>;
@@ -25,7 +24,7 @@ namespace {
 // Return a list of bag rules, which describes information regarding how a
 // certain color of bag can contain other types of bags. A bag rule specifies
 // a given edge to another bag, which can be empty (representing a sink in the
-// bag directed graph). 
+// bag directed graph).
 std::vector<BagRule> CreateBagRule(const std::string &line) {
   assert(line[line.size() - 1] != '.');
   std::vector<BagRule> ret;
@@ -47,7 +46,8 @@ std::vector<BagRule> CreateBagRule(const std::string &line) {
       weight = std::stoi(split_rule[0]);
       // split_rule[3] == "bags", and therefore can be discarded
       dest_color = split_rule[1] + " " + split_rule[2];
-      ret.push_back(std::make_pair(origin_color, std::make_pair(dest_color, weight)));
+      ret.push_back(
+          std::make_pair(origin_color, std::make_pair(dest_color, weight)));
     }
   } else {
     ret.push_back(std::make_pair(origin_color, Edge()));
@@ -56,7 +56,8 @@ std::vector<BagRule> CreateBagRule(const std::string &line) {
   return ret;
 }
 
-int WeightedDfsExpansion(const std::string& key, const BagMap* const node_map, std::unordered_set<std::string>* const seen_nodes) {
+int WeightedDfsExpansion(const std::string &key, const BagMap *const node_map,
+                         std::unordered_set<std::string> *const seen_nodes) {
   // A key with no entry in the map is a sink
   // Recursion ends when a node has no rules / the list is empty.
   if (node_map->find(key) == node_map->end()) {
@@ -67,21 +68,21 @@ int WeightedDfsExpansion(const std::string& key, const BagMap* const node_map, s
   const std::vector<Edge> &rule_list = node_map->find(key)->second;
 
   for (const auto &rule : rule_list) {
-    count += rule.second * WeightedDfsExpansion(rule.first, node_map, seen_nodes);
+    count +=
+        rule.second * WeightedDfsExpansion(rule.first, node_map, seen_nodes);
   }
   return count;
 }
 
 } // namespace
 
-void operator<<(std::ostream &os,
-                const BagRule& obj) {
+void operator<<(std::ostream &os, const BagRule &obj) {
   os << "\"" << obj.first << "\""
      << ":" << obj.second.second << ":"
      << "\"" << obj.second.first << "\"" << std::endl;
 }
 
-void operator<<(std::ostream &os, const Edge& obj) {
+void operator<<(std::ostream &os, const Edge &obj) {
   os << "\"" << obj.first << "\""
      << ":" << obj.second << std::endl;
 }
@@ -157,8 +158,8 @@ void ComputePart2() {
   std::unordered_set<std::string> seen_nodes;
   int total = WeightedDfsExpansion(target_bag, &node_map, &seen_nodes);
   std::cout << "Part 2 - Total bags within '" << target_bag << "'"
-            << " bags: "
-            << std::to_string(total) << std::endl;;
+            << " bags: " << std::to_string(total) << std::endl;
+  ;
 }
 
 int main(int argc, char **argv) {

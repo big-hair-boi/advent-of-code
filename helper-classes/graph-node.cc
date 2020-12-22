@@ -2,6 +2,4 @@
 
 #include "graph-node.h"
 
-GraphNode::GraphNode(const std::string &key) : _key(key) {
-  
-}
+GraphNode::GraphNode(const std::string &key) : _key(key) {}

@@ -8,24 +8,24 @@
 
 namespace data {
 
-std::vector<std::string> GetStringList(const std::string& filename) {
-    std::vector<std::string> data_list;
+std::vector<std::string> GetStringList(const std::string &filename) {
+  std::vector<std::string> data_list;
 
-    std::ifstream file(filename);
-    if (!file) {
-        return data_list;
-    }
-
-    std::string str;
-    while (std::getline(file, str)) {
-      data_list.push_back(str);
-    }
-    file.close();
-
+  std::ifstream file(filename);
+  if (!file) {
     return data_list;
+  }
+
+  std::string str;
+  while (std::getline(file, str)) {
+    data_list.push_back(str);
+  }
+  file.close();
+
+  return data_list;
 }
 
-std::vector<long long int> GetIntList(const std::string& filename) {
+std::vector<long long int> GetIntList(const std::string &filename) {
   std::vector<long long int> ret;
   std::vector<std::string> string_list = GetStringList(filename);
 

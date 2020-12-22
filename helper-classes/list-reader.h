@@ -11,8 +11,8 @@
 namespace data {
 
 // Read in data from file and return as a line-by-line list.
-std::vector<std::string> GetStringList(const std::string& filename);
-std::vector<long long int> GetIntList(const std::string& filename);
+std::vector<std::string> GetStringList(const std::string &filename);
+std::vector<long long int> GetIntList(const std::string &filename);
 
 } // namespace data
 

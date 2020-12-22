@@ -9,8 +9,7 @@
 #include "../helper-classes/list-reader.h"
 #include "../helper-classes/string-manipulation.h"
 
-constexpr char filepath[] =
-    "../day-04/advent-day-04-data.txt";
+constexpr char filepath[] = "../day-04/advent-day-04-data.txt";
 constexpr int max_key_count = 8;
 
 using Credential = std::unordered_map<std::string, std::string>;
@@ -20,7 +19,7 @@ namespace {
 
 Credential CreateCredentialObject(std::vector<std::string> str_list) {
   Credential ret;
-  for (const std::string& str : str_list) {
+  for (const std::string &str : str_list) {
     for (std::string entry : data::string_split(str, " ")) {
       const auto entry_components = data::string_split(entry, ":");
       ret.insert(std::pair(entry_components.at(0), entry_components.at(1)));
@@ -32,9 +31,9 @@ Credential CreateCredentialObject(std::vector<std::string> str_list) {
 std::vector<Credential> BuildCredentialList() {
   std::vector<Credential> ret;
   std::vector<std::string> str_list;
-  for (const std::string& line : data::GetStringList(filepath)) {
+  for (const std::string &line : data::GetStringList(filepath)) {
     // This line is a demarcation between credentials.
-    if (std::all_of(line.begin(), line.end(),isspace)) {
+    if (std::all_of(line.begin(), line.end(), isspace)) {
       ret.push_back(CreateCredentialObject(str_list));
       str_list.clear();
     } else {
@@ -50,8 +49,7 @@ std::vector<Credential> BuildCredentialList() {
   return ret;
 }
 
-std::ostream& operator<<(std::ostream& os, const Credential& c)
-{
+std::ostream &operator<<(std::ostream &os, const Credential &c) {
   for (const auto pair : c) {
     os << pair.first << ":" << pair.second << std::endl;
   }
@@ -72,14 +70,14 @@ bool IsValidYear(const Pair &pair) {
   if (len != 4) {
     return false;
   }
-  const std::string& key = pair.first;
+  const std::string &key = pair.first;
   return (key == "byr" && value >= 1920 && value <= 2002) ||
          (key == "iyr" && value >= 2010 && value <= 2020) ||
          (key == "eyr" && value >= 2020 && value <= 2030);
 }
 
 bool IsValidHeight(const Pair &pair) {
-  const std::string& str_value = pair.second;
+  const std::string &str_value = pair.second;
   const int str_size = str_value.size();
   if (str_size < 4)
     return false;
@@ -102,7 +100,7 @@ bool IsValidHeight(const Pair &pair) {
 }
 
 bool IsValidHairColor(const Pair &pair) {
-  const std::string& str_value = pair.second;
+  const std::string &str_value = pair.second;
   if (str_value.size() != 7)
     return false;
 
@@ -113,7 +111,7 @@ bool IsValidEyeColor(const Pair &pair) {
   static const std::unordered_set<std::string> valid_colors = {
       "amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
 
-  const std::string& value = pair.second;
+  const std::string &value = pair.second;
   if (value.size() != 3)
     return false;
 
@@ -129,8 +127,9 @@ bool IsValidPid(const Pair &pair) {
 }
 
 bool IsCredentialValidPart2(Credential credential) {
-  static constexpr std::array<const char*, 3> year_fields {{"eyr", "iyr", "byr"}};
-  for (auto* year : year_fields) {
+  static constexpr std::array<const char *, 3> year_fields{
+      {"eyr", "iyr", "byr"}};
+  for (auto *year : year_fields) {
     const auto pair = credential.find(year);
     if (pair == credential.end() || !IsValidYear(*pair)) {
       return false;
@@ -178,7 +177,7 @@ int main(int argc, char **argv) {
             << std::endl;
 
   int count2 = 0;
-  for (const auto& credential : credential_list) {
+  for (const auto &credential : credential_list) {
     if (IsCredentialValidPart2(credential)) {
       ++count2;
     }

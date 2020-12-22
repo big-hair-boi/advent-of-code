@@ -21,7 +21,8 @@
 // //   template<typename input_type>
 // //   value_T CreateNode(const input_type& node_input) = 0;
 
-// //   // Create a list of inputs that can be fed into CreateNode() to instantiate
+// //   // Create a list of inputs that can be fed into CreateNode() to
+// instantiate
 // //   // nodes from file.
 // //   virtual std::vector<input_type> CreateInputList() = 0;
 
@@ -30,9 +31,8 @@
 // //   const std::string& _filepath;
 // // };
 
-// // A node associated with a string key and instantiated from a list of strings
-// class Node {
-// private:
+// // A node associated with a string key and instantiated from a list of
+// strings class Node { private:
 //   // Constructor can't be made abstract, so add layer of indirection
 //   virtual void Initialize(const std::vector<std::string> &input_list) = 0;
 

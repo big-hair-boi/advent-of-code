@@ -25,6 +25,7 @@ add_subdirectory(./helper-classes)
 # day-01 solution
 add_executable(day-01-main ./day-01/day-01-main.cc)
 target_link_libraries(day-01-main PUBLIC list-reader)
+target_link_libraries(day-01-main PUBLIC list-manipulation)
 
 # day-04 solution
 add_executable(day-04-main ./day-04/day-04-main.cc)
@@ -43,9 +44,13 @@ target_link_libraries(day-06-main PUBLIC list-reader)
 add_executable(day-07-main ./day-07/day-07-main.cc)
 target_link_libraries(day-07-main PUBLIC string-manipulation)
 target_link_libraries(day-07-main PUBLIC list-reader)
-target_link_libraries(day-07-main PUBLIC graph)
 
 # day-08 solution
 add_executable(day-08-main ./day-08/day-08-main.cc)
 target_link_libraries(day-08-main PUBLIC string-manipulation)
 target_link_libraries(day-08-main PUBLIC list-reader)
+
+# day-09 solution
+add_executable(day-09-main ./day-09/day-09-main.cc)
+target_link_libraries(day-09-main PUBLIC list-manipulation)
+target_link_libraries(day-09-main PUBLIC list-reader)

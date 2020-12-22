@@ -12,4 +12,4 @@ add_library(list-reader STATIC list-reader.cc)
 
 add_library(string-manipulation STATIC string-manipulation.cc)
 
-add_library(graph STATIC graph.cc)
+add_library(list-manipulation STATIC list-manipulation.cc)

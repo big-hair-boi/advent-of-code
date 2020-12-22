@@ -6,11 +6,6 @@
 #include <string>
 #include <unordered_map>
 
-namespace {
-
-constexpr std::pair<int, int> empty_pair = {0, 0};
-
-}
 
 namespace compute {
 
@@ -40,7 +35,7 @@ std::pair<int, int> Get2Sum(int target_value,
 
   std::cout << "Unable to find 2sum pair for " << std::to_string(target_value)
             << std::endl;
-  return empty_pair;
+  return empty_2sum;
 }
 
 std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_list) {
@@ -52,7 +47,7 @@ std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_li
   for (const auto pair : complement_map) {
     const auto match = Get2Sum(pair.first, int_list, pair.second);
 
-    if (match != empty_pair) {
+    if (match != empty_2sum) {
       std::cout << "Found 3sum: " << std::to_string(match.first) << " + "
                 << std::to_string(match.second) << " + "
                 << std::to_string(pair.second) << " = "
@@ -62,7 +57,7 @@ std::tuple<int, int, int> Get3Sum(int target_sum, const std::vector<int>& int_li
   }
 
   std::cout << "Unable to find 3sum set." << std::endl;
-  return std::tuple<int, int, int>();
+  return empty_3sum;
 }
 
 } // namespace compute

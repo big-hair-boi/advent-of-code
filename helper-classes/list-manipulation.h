@@ -9,6 +9,9 @@
 
 namespace compute {
 
+constexpr const std::pair<int, int> empty_2sum = {0, 0};
+constexpr const std::tuple<int, int, int> empty_3sum = {0, 0, 0};
+
 std::pair<int, int> Get2Sum(int target_value,
                             const std::vector<int>& value_list,
                             int used_value);

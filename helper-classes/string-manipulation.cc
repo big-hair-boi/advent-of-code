@@ -4,17 +4,21 @@
 #include <cstring>
 #include <iostream>
 #include <sstream>
+#include <regex>
 
 namespace data {
 
 std::vector<std::string> string_split(const std::string &str,
-                                      char delim = '\n') {
+                                      const std::string& delim = "\n") {
   std::vector<std::string> ret;
-  std::stringstream ss(str);
-  while(ss.good()) {
-      std::string substr;
-      std::getline(ss, substr, delim);
-      ret.push_back(substr);
+  std::string regex_expr = "(" + delim + ")";
+  std::regex re(regex_expr);
+  //the '-1' is what makes the regex split (-1 := what was not matched)
+  std::sregex_token_iterator first{str.begin(), str.end(), re, -1}, last;
+
+  std::vector<std::string> tokens{first, last};
+  for (auto t : tokens) {
+      ret.push_back(t);
   }
   return ret;
 }

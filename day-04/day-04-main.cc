@@ -21,8 +21,8 @@ namespace {
 Credential CreateCredentialObject(std::vector<std::string> str_list) {
   Credential ret;
   for (const std::string& str : str_list) {
-    for (std::string entry : data::string_split(str, ' ')) {
-      const auto entry_components = data::string_split(entry, ':');
+    for (std::string entry : data::string_split(str, " ")) {
+      const auto entry_components = data::string_split(entry, ":");
       ret.insert(std::pair(entry_components.at(0), entry_components.at(1)));
     }
   }

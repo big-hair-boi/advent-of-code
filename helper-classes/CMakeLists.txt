@@ -11,3 +11,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_library(list-reader STATIC list-reader.cc)
 
 add_library(string-manipulation STATIC string-manipulation.cc)
+
+add_library(graph STATIC graph.cc)

@@ -15,6 +15,7 @@ project(advent-of-code VERSION 1.0)
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "-Wcall-to-pure-virtual-from-ctor-dtor")
 
 include(ClangFormat.cmake)
 
@@ -25,7 +26,7 @@ add_subdirectory(./helper-classes)
 add_executable(day-01-main ./day-01/day-01-main.cc)
 target_link_libraries(day-01-main PUBLIC list-reader)
 
-#day-04 solution
+# day-04 solution
 add_executable(day-04-main ./day-04/day-04-main.cc)
 target_link_libraries(day-04-main PUBLIC string-manipulation)
 target_link_libraries(day-04-main PUBLIC list-reader)
@@ -37,3 +38,9 @@ target_link_libraries(day-05-main PUBLIC list-reader)
 # day-06 solution
 add_executable(day-06-main ./day-06/day-06-main.cc)
 target_link_libraries(day-06-main PUBLIC list-reader)
+
+# day-07 solution
+add_executable(day-07-main ./day-07/day-07-main.cc)
+target_link_libraries(day-07-main PUBLIC string-manipulation)
+target_link_libraries(day-07-main PUBLIC list-reader)
+target_link_libraries(day-07-main PUBLIC graph)

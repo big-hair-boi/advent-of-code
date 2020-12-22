@@ -66,8 +66,12 @@
       "xlocmes": "cpp",
       "xlocmon": "cpp",
       "xloctime": "cpp",
+<<<<<<< HEAD
       "bitset": "cpp",
       "queue": "cpp"
+=======
+      "stack": "cpp"
+>>>>>>> ecfe620... Implemented day 08 part 2 as a recursive solution
     },
 
     "editor.detectIndentation": false,

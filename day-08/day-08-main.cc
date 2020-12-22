@@ -73,7 +73,7 @@ std::ostream& operator<<(std::ostream& os, const Operation& op) {
 std::vector<Operation> BuildOpList() {
   std::vector<Operation> ret;
   for (const auto& line : data::GetStringList(filepath)) {
-    const auto& op_data = data::string_split(line, ' ');
+    const auto& op_data = data::string_split(line, " ");
     assert(op_data.size() == 2);
 
     // assume there are no errors in the data

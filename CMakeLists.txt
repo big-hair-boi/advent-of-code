@@ -54,3 +54,7 @@ target_link_libraries(day-08-main PUBLIC list-reader)
 add_executable(day-09-main ./day-09/day-09-main.cc)
 target_link_libraries(day-09-main PUBLIC list-manipulation)
 target_link_libraries(day-09-main PUBLIC list-reader)
+
+# day-10 solution
+add_executable(day-10-main ./day-10/day-10-main.cc)
+target_link_libraries(day-10-main PUBLIC list-reader)

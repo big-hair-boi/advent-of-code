@@ -58,3 +58,7 @@ target_link_libraries(day-09-main PUBLIC list-reader)
 # day-10 solution
 add_executable(day-10-main ./day-10/day-10-main.cc)
 target_link_libraries(day-10-main PUBLIC list-reader)
+
+# day-11 solution
+add_executable(day-11-main ./day-11/day-11-main.cc)
+target_link_libraries(day-11-main PUBLIC list-reader)
